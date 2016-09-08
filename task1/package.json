@@ -1,0 +1,36 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "\"node js tasks\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "\"\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shirinshahana/NodeJS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shirinshahana/NodeJS/issues"
+  },
+  "homepage": "https://github.com/shirinshahana/NodeJS#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "gulp": "^3.9.1",
+    "gulp-beautify": "^2.0.0",
+    "gulp-jshint": "^2.0.1",
+    "gulp-mocha": "^3.0.1",
+    "jshint": "^2.9.3",
+    "mocha": "^3.0.2",
+    "mongoose": "^4.6.0",
+    "superagent": "^2.2.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "mongodb": "^2.2.9",
+    "mongoose": "^4.6.0"
+  }
+}
