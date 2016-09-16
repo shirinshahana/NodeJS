@@ -1,7 +1,7 @@
 var chai = require('chai');
 var expect = chai.expect;
 var superagent = require('superagent')
-var api = require("./api.js");
+var api = require("./index.js");
 
 
 var product = {
