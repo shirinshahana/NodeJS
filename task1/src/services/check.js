@@ -1,5 +1,5 @@
 var Promise = require("bluebird");
-var config = require("/home/Qburst/Desktop/task1/config/config.json")
+var config = require("../../config/config.json")
 
 module.exports.check = function(newProduct) {
 
