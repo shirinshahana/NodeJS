@@ -16,9 +16,9 @@ module.exports.viewProducts = function(req, res) {
 			throw err;
 		}
 		if (result.length == 0)
-			res.status(404).end("The given id doesn't exists.");
+			res.status(404).json({'status' : 404, 'message': "The given id doesn't exists."})
 		else
-			res.end(JSON.stringify(result));
+			res.json({'status' : 200, 'message': "Success",'result':result})
 	});
 	}
 
@@ -29,7 +29,7 @@ module.exports.addProducts = function(req, res) {
 
 
 	if (!(newProduct.color_code && newProduct.model_no && newProduct.product_id && newProduct.unit && newProduct.height && newProduct.waist && newProduct.chest && newProduct.region && newProduct.hip && newProduct.inseam && newProduct.size_asia && newProduct.size_us && newProduct.size_eu && newProduct.product_category && newProduct.brand)) {
-		res.status(400).end("All fields are mandatory")
+		res.status(400).json({'status' : 400, 'message': "All fields are mandatory"})
 	} else {
 		check.check(newProduct)
 		.then(function(newProduct){
@@ -38,9 +38,17 @@ module.exports.addProducts = function(req, res) {
 			if (err)
 				throw err;
 
-			res.json(newp);
+			res.json({'status' : 200, 'message': "Success",'result':newp});
 
-		})}, function(err){res.status(404).end(err)})
+		})}, function(err){res.status(400).json()
+			//,
+			
+	
+	
+	
+	}
+
+	)
 
 	}
 };
@@ -52,7 +60,7 @@ module.exports.addProducts = function(req, res) {
 module.exports.deleteProducts = function(req, res) {
 	id = req.params.id;
 	if (id.length != 24)
-		res.status(400).end("Invalid Id");
+		res.status(400).json({'status' : 400, 'message': "Invalid id"});
 	else
 		database.remove({
 			_id: new ObjectID(id)
@@ -60,9 +68,9 @@ module.exports.deleteProducts = function(req, res) {
 			if (err)
 				throw err;
 			if (doc.result.n == 0)
-				res.status(404).end("The given id doesn't exist");
+				res.status(404).json({'status' : 404, 'message': "The given id doesn't exists."})
 			else
-				res.end("Deletion Successful");
+				res.json({'status' : 404, 'message': "Deletion Successful"})
 
 		})
 };
@@ -75,7 +83,7 @@ module.exports.updateProducts = function(req, res) {
 	id = req.params.id;
 	updateDoc = req.body
 	if (id.length != 24)
-		res.status(400).end("Invalid Id");
+		res.status(400).json({'status' : 400, 'message': "Invalid id"});
 	else {
 		database.update({
 			_id: new ObjectID(id)
@@ -85,7 +93,7 @@ module.exports.updateProducts = function(req, res) {
 			if (err)
 				throw err;
 			if (!doc.n)
-				res.status(404).end("The given id doesn't exist");
+				res.status(404).json({'status' : 404, 'message': "The given id doesn't exists."})
 			else
 				database.find({
 					_id: new ObjectID(id)
@@ -95,7 +103,7 @@ module.exports.updateProducts = function(req, res) {
 
 
 
-					res.send("Updation Successful" + JSON.stringify(result));
+					res.json({'status' : 200, 'message': "Updation Successful",'result':result})
 
 				});
 		})
